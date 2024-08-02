@@ -21,7 +21,7 @@ class LoginController
     }
 
     public function loginUser(){
-     
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST' || isset($_POST['username'], $_POST['password'])){
             $username = $_POST['username'];
             $password = $_POST['password'];
@@ -47,6 +47,7 @@ class LoginController
                 $_SESSION['user'] = [
                     'username' => $username,
                     'is_login' => true,
+                    'money' => $this -> userModel ->  getUserByUsername($username) -> money,
                     'login_time' => time()
                 ];
                 header('location: ' . URLROOT . '/', true, 302);

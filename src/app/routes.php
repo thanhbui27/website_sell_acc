@@ -10,7 +10,7 @@ $router->addRoute('auth/logout', ['controller' => 'LoginController', 'action' =>
 $router->addRoute('auth/login', ['controller' => 'LoginController', 'action' => 'loginUser']);
 $router->addRoute('auth/register', ['controller' => 'RegisterController', 'action' => 'registerUser']);
 
-
+$router -> addRoute("server-game/{id:\d+}",['controller' => 'ServerGameController' , 'action' => 'index']);
 
 
 //This is template route

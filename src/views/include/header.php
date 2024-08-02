@@ -95,14 +95,23 @@
                         <a href="https://clone web.com/"><img width="110" height="50"
                                 src="<?= URLROOT; ?>/template/theme/assets/image/9EyDJaM.gif" class="v-logo"></a>
                     </div>
-                    <a href="https://clone web.com/Auth/Login"
-                        class="lg:hidden flex border mx-2 px-3 h-8 border-gray-400 rounded items-center text-white-800 font-bold justify-center pointer-cursor">
-                        Đăng nhập
-                    </a>
-                    <a href="https://clone web.com/Auth/Register"
-                        class="lg:hidden flex border mx-2 px-3 h-8 border-gray-400 rounded items-center text-white-800 font-bold justify-center pointer-cursor">
-                        Đăng ký
-                    </a>
+                    <?php if(isset($_SESSION["user"])): ?>
+                    <a href="<?= URLROOT; ?>/auth/profile"
+                        class="lg:hidden flex border mx-2 px-3 h-8 border-gray-400 rounded items-center text-white-800 font-bold justify-center pointer-cursor"><span
+                            class="block"><i class="relative bx bxs-user mr-2 "></i><?= $_SESSION["user"]["username"] ?>
+                            - <?= $_SESSION["user"]["money"] ?></span></a>
+                    <a href="<?= URLROOT; ?>/auth/logout"
+                        class="lg:hidden flex border mx-2 px-3 h-8 border-gray-400 rounded items-center text-white-800 font-bold justify-center pointer-cursor"><span
+                            class="block"><i class="relative bx bxs-user mr-2 "></i>Đăng xuất</span></a>
+                    <?php else: ?>
+                    <a href="<?= URLROOT; ?>/auth/loginPage"
+                        class="lg:hidden flex border mx-2 px-3 h-8 border-gray-400 rounded items-center text-white-800 font-bold justify-center pointer-cursor"><span
+                            class="block"><i class="relative bx bxs-user mr-2 "></i>Đăng nhập</span></a>
+                    <a href="<?= URLROOT; ?>/auth/registerPage"
+                        class="lg:hidden flex border mx-2 px-3 h-8 border-gray-400 rounded items-center text-white-800 font-bold justify-center pointer-cursor"><span
+                            class="block"><i class="relative bx bxs-user mr-2 "></i>Đăng kí</span></a>
+                    <?php endif; ?>
+
                     <label for="menu-toggle" id="toggle" class="pointer-cursor text-white-800 text-2xl lg:hidden block">
                         <span class="h-8 w-8 border border-gray-400 justify-center items-center inline-flex rounded"><i
                                 class="bx bx-menu"></i></span>
@@ -110,7 +119,8 @@
                     <div class="hidden md:mt-0 lg:flex lg:items-center lg:w-auto w-full" id="menu-toggle">
                         <nav class="font-bold lg:text-lg">
                             <ul class="lg:flex items-center justify-between text-base text-white-700 lg:pt-0">
-                                <li><a href="/" class="lg:p-3 py-1 lg:py-2 px-2 lg:px-3 block  lr-btn">TRANG CHỦ</a>
+                                <li><a href="<?= URLROOT; ?>"
+                                        class="lg:p-3 py-1 lg:py-2 px-2 lg:px-3 block  lr-btn">TRANG CHỦ</a>
                                 </li>
                                 <li><a href="#" class="lg:p-3 py-1 lg:py-2 px-2 lg:px-3 block  lr-btn">LIÊN HỆ
                                         ADMIN</a>
@@ -124,7 +134,8 @@
                                 <a href="<?= URLROOT; ?>/auth/profile" class="lg:ml-4 flex border px-3 h-8 border-gray-400 lg:rounded-full items-center
                                 text-white-800 font-bold justify-center lg:mb-0 mb-2 pointer-cursor lr-btn"><span
                                         class="block"><i
-                                            class="relative bx bxs-user mr-2 "></i><?= $_SESSION["user"]["username"] ?></span></a>
+                                            class="relative bx bxs-user mr-2 "></i><?= $_SESSION["user"]["username"] ?>
+                                        - <?= $_SESSION["user"]["money"] ?></span></a>
                                 <a href="<?= URLROOT; ?>/auth/logout"
                                     class="lg:ml-4 flex border px-3 h-8 border-gray-400 lg:rounded-full items-center text-white-800 font-bold justify-center lg:mb-0 mb-2 pointer-cursor lr-btn"><span
                                         class="block"><i class="relative bx bxs-user mr-2 "></i>Đăng xuất</span></a>
