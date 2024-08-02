@@ -45,7 +45,7 @@ class Router
 
     // Add start and end delimeter
     $route = '/^' . $route . '$/i';
-
+    
     $this->routes[$route] = $params;
   }
 

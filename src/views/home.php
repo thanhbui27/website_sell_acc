@@ -20,9 +20,8 @@
                     <div class="bg-trueGray-800 w-full"
                         style="min-height: 100%;padding: 5px;background: #333;border-top-left-radius: 5px;border-bottom-left-radius: 5px;box-shadow: 0 0 15px #99FFFF, inset 0 0 5px #99FFFF;">
                         <div class="flex color-grant font-bold">
-                            <div class="cursor-pointer bg-trueGray-800 tablinks active" onclick="Tab('nap')" style="
-background: #333;
-">
+                            <div class="cursor-pointer bg-trueGray-800 tablinks active" onclick="Tab('nap')"
+                                style="background: #333;">
                                 <h2 class="font-extrabold md:text-2xl px-2 py-1 text-center text-xl vuarobux-text w-32"
                                     style="color: #99FFFF;">
                                     NẠP THẺ
@@ -255,13 +254,11 @@ background: #333;
         </div>
     </div>
 
-
-
-
+    <?php foreach($data["category"] as $cate): ?>
     <center>
         <div class="fade-in mb-2 py-2 md:mb-4 block uppercase md:py-4 text-center text-yellow-400 md:text-3xl text-2xl font-extrabold vuarobux-title-two "
             style="max-width: 450px;background: #333;border-radius: 5px;box-shadow: 0 0 15px #99FFFF, inset 0 0 20px #99FFFF;">
-            ✨ DANH MỤC ACC GAME ✨
+            ✨ <?=  $cate["title"]; ?>✨
         </div>
     </center>
     <div class="pb-10">
@@ -272,38 +269,37 @@ background: #333;
                         <div class="mb-4 py-4 md:p-4 vuarobux-box"
                             style="border: solid 1px #99FFFF;box-shadow: 0 0 15px #99FFFF, inset 0 0 10px #99FFFF;">
                             <div class="fade-in grid grid-cols-8 gap-2 px-2 md:px-0">
+                                <?php if(count($cate["games"]) > 0) : ?>
+                                <?php foreach($cate["games"] as $game): ?>
                                 <div class="col-span-4 lg:col-span-2 md:col-span-2 relative rounded sm:col-span-4 vua vuarobux-box vuarobux-title-two xl:col-span-2"
                                     style="border: solid 1px #99FFFF;box-shadow: 0 0 15px #99FFFF, inset 0 0 5px #99FFFF;">
-                                    <a href="#">
-                                        <img data-src="./template/theme/assets/image/category_H0YL6F1OKZPB.png"
-                                            class="rounded-t h-28 md:h-48 w-full object-fill object-center lazyLoad"
-                                            src="./template/theme/assets/image/category_H0YL6F1OKZPB.png">
+                                    <a href="<?= URLROOT; ?>/server-game/<?= $game -> id ?>">
+                                        <img data-src="<?=URLROOT  ?>/<?=$game -> image  ?>"
+                                            class="rounded-t h-28 md:h-48 w-full object-fill object-center lazyLoad">
                                     </a>
-                                    <div class="py-1"><a href="#">
-                                            <div class="py-1 font-bold text-md px-1 truncate text-center uppercase">
-                                                Nick Hồi Ức Ngọc Rồng </div>
+                                    <div class="py-1"><a href="<?= URLROOT; ?>/server-game/<?= $game -> id ?>">
+                                            <div class="py-1 font-bold text-md px-1 truncate text-center uppercase"
+                                                style="color: #fff;">
+                                                <?=$game -> name  ?> </div>
                                             <div class="flex px-2 mt-2 justify-center">
                                             </div>
                                         </a>
                                         <div class="mt-2 mb-2 px-2 py-1 flex items-center justify-center mt-9">
-                                            <a href="#">
+                                            <a href="<?= URLROOT; ?>/server-game/<?= $game -> id ?>">
 
-                                                <div>
-
-                                                </div>
                                             </a>
                                             <div class="button" id="button-6"
                                                 style="border: solid 1px #99FFFF;box-shadow: 0 0 15px #99FFFF, inset 0 0 5px #99FFFF;">
-                                                <a href="#">
+                                                <a href="<?= URLROOT; ?>/server-game/<?= $game -> id ?>">
                                                     <div id="spin"></div>
-                                                </a><a href="#">Mua Ngay </a>
+                                                </a><a href="<?= URLROOT; ?>/server-game/<?= $game -> id ?>">Mua Ngay
+                                                </a>
                                             </div>
-
-
                                         </div>
                                     </div>
-
                                 </div>
+                                <?php endforeach;?>
+                                <?php endif; ?>
                             </div>
 
                         </div>
@@ -314,11 +310,9 @@ background: #333;
         </div>
     </div>
 
+    <?php endforeach;?>
 
-
-
-
-    <center>
+    <!-- <center>
         <div class="fade-in mb-2 py-2 md:mb-4 block uppercase md:py-4 text-center text-yellow-400 md:text-3xl text-2xl font-extrabold vuarobux-title-two "
             style="max-width: 450px;background: #333;border-radius: 5px;box-shadow: 0 0 15px #99FFFF, inset 0 0 20px #99FFFF;">
             ✨ DANH MỤC DỊCH VỤ ✨
@@ -333,35 +327,7 @@ background: #333;
                         <div class="mb-4 py-4 md:p-4 vuarobux-box"
                             style="border: solid 1px #99FFFF;box-shadow: 0 0 15px #99FFFF, inset 0 0 10px #99FFFF;">
                             <div class="fade-in grid grid-cols-8 gap-2 px-2 md:px-0">
-                                <div class="col-span-4 lg:col-span-2 md:col-span-2 relative rounded sm:col-span-4 vua vuarobux-box vuarobux-title-two xl:col-span-2"
-                                    style="border: solid 1px #99FFFF;box-shadow: 0 0 15px #99FFFF, inset 0 0 5px #99FFFF;">
-                                    <a href="#8">
-                                        <img data-src="./template/theme/assets/image/category_CNW7ZHP9BSJ5.png"
-                                            class="rounded-t h-28 md:h-48 w-full object-fill object-center lazyLoad">
-                                    </a>
-                                    <div class="py-1"><a href="#8">
-                                            <div class="py-1 font-bold text-md px-1 truncate text-center uppercase"
-                                                style="color: #fff;">
-                                                BÁN THỎI VÀNG HỒI ỨC NRO </div>
-                                            <div class="flex px-2 mt-2 justify-center">
-                                            </div>
-                                        </a>
-                                        <div class="mt-2 mb-2 px-2 py-1 flex items-center justify-center mt-9">
-                                            <a href="#8">
 
-                                            </a>
-                                            <div class="button" id="button-6"
-                                                style="border: solid 1px #99FFFF;box-shadow: 0 0 15px #99FFFF, inset 0 0 5px #99FFFF;">
-                                                <a href="#8">
-                                                    <div id="spin"></div>
-                                                </a><a href="#8">Mua Ngay </a>
-                                            </div>
-
-
-                                        </div>
-                                    </div>
-
-                                </div>
                                 <div class="col-span-4 lg:col-span-2 md:col-span-2 relative rounded sm:col-span-4 vua vuarobux-box vuarobux-title-two xl:col-span-2"
                                     style="border: solid 1px #99FFFF;box-shadow: 0 0 15px #99FFFF, inset 0 0 5px #99FFFF;">
                                     <a href="#9">
@@ -484,25 +450,24 @@ background: #333;
 
 
         </div>
-    </div>
+    </div> -->
 </div>
 
 <div class="animated modal fadeIn is-visible fixed z-50 pin bg-smoke-dark flex p-2 md:p-0 top-0 left-0 bottom-0 right-0"
-    style="z-index: 999; display: none;" id="indexModal">
+    style="z-index: 999;display : none" id="indexModal">
     <div class="animated fadeInDown fixed shadow-inner max-w-md md:max-w-lg relative pin-b pin-x align-top m-auto justify-center bg-white rounded w-full h-auto md:shadow-lg flex flex-col vuarobux-box"
         style="border: solid 1px #99FFFF;box-shadow: 0 0 15px #99FFFF, inset 0 0 20px #99FFFF;">
         <div class="modal-header">
             <div class="text-red-600 font-bold text-lg text-center mb-3 p-3 uppercase vuarobux-text">
-                <i style="background: url(./template/theme/assets/image/1ZHeaAQ.gif);
-        color: #56ffff;" class="bx bxs-analyse spin"></i>
-                <a style="color: #99FFFF;">THÔNG BÁO</a> <i style="background: url(./template/theme/assets/image/1ZHeaAQ.gif);
-        color: #56ffff;" class="bx bxs-analyse spin"></i>
+                <i style="background: url(https://i.imgur.com/1ZHeaAQ.gif);
+            color: #56ffff;" class="bx bxs-analyse spin"></i>
+                <a style="color: #99FFFF;">THÔNG BÁO</a> <i style="background: url(https://i.imgur.com/1ZHeaAQ.gif);
+            color: #56ffff;" class="bx bxs-analyse spin"></i>
                 <br>
             </div>
             <span class="absolute cursor-pointer text-2xl text-gray-800 pt-3 px-3" onclick="FuncHideModal()"
-                style="right: -1px; top: -2px;"><i class="fa fa-times spin" style="
-color: white;
-text-shadow: 0 0 4px #99FFFF;"></i></span>
+                style="right: -1px; top: -2px;"><i class="fa fa-times spin"
+                    style="color: white;text-shadow: 0 0 4px #99FFFF;"></i></span>
         </div>
 
         <div class="modal-content">
@@ -537,8 +502,8 @@ text-shadow: 0 0 4px #99FFFF;"></i></span>
                                                     <h1
                                                         style="border: 0px solid rgb(226, 232, 240); --tw-shadow: 0 0 transparent; --tw-ring-inset: var(--tw-empty, ); --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(14,165,233,0.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; margin: 0px; z-index: 1; scroll-behavior: smooth; padding: 0px; outline: none;">
                                                         <b style="">
-                                                            <font color="#ff9c00">clone web.COM BÁN NICK UY TÍN
-                                                                GIÁ RẺ</font>
+                                                            <font color="#ff9c00">NICK789.COM BÁN NICK UY TÍN GIÁ RẺ
+                                                            </font>
                                                         </b>
                                                     </h1>
                                                 </div>
@@ -556,47 +521,43 @@ text-shadow: 0 0 4px #99FFFF;"></i></span>
                                 <font color="#ffff00">&nbsp;= 80k shop<br></font>
                             </b><span style="font-family: Arial; font-size: 1rem; font-weight: bold;" arial=""
                                 black";"="">
-                                <font color="#ff0000">Nạp tiền lỗi , thanh lý nick-vàng , mua vàng ib zalo&nbsp;
-                                </font>
+                                <font color="#ff0000">Nạp tiền lỗi , thanh lý nick-vàng , mua vàng ib zalo&nbsp;</font>
                             </span>
                             <font color="#ff0000"><b>0377928648&nbsp;<font
-                                        style="font-family: inherit; font-size: 1rem;">hoặc fb</font></b></font>
-                            <b style="color: inherit; font-size: 1rem; font-family: Arial;">&nbsp;</b>
-                            <font face="Arial" color="#00ffff" style="font-size: 1rem;"><b><a
-                                        href="https://www.facebook.com/vlog.co.73/friends/?__tn__=%3C"
-                                        target="_blank">&gt; tại đây &lt;</a></b></font>
+                                        style="font-family: inherit; font-size: 1rem;">hoặc fb</font></b></font><b
+                                style="color: inherit; font-size: 1rem; font-family: Arial;">&nbsp;</b>
+                            <font face="Arial" color="#00ffff" style="font-size: 1rem;"><b><a href=""
+                                        target#="_blank">&gt; tại đây &lt;</a></b></font>
                         </h6>
                         <h6 style=""><img
                                 src="data:image/gif;base64,R0lGODlhFgAKALMAAP//AP/Fxf+1tf+Zmf+EhP9mZv9SUv9CQv8zM/8hIf8QEP8AAP///wAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQJCgAMACwAAAAAFgAKAAAEWdAkI4REJ+cyij5FoAAKgoxLqiqJoi6KsQAvDdz4jN/JXPsqWkoY0+2AwyDMEED6hMkkgsEYlU62X/JAlVAsrt2NZS1QA4TAuXB6xQZeNXU+F3g0IQZazogAACH5BAkKAAwALAAAAAAWAAoAAARYMJDAWChIrb0UOiBYBEZiCIKhAWzLcYoKeBmw2Jzdtsn96r/cJuYT4jZHWyxw2wGFyAWiUow6k4tDRTFD1F5DL1dRqJROqcQndCigzhTLpCIRVO53SZwRAQAh+QQJCgAMACwAAAAAFgAKAAAEVTCQwJgc5WiN1PqLYhiJIQhk4oEf4L4qoCAdsLwvaIfGzdq7lo4X8A2DRh+icsMBf8MDE/kcthSFikJG2zZxM0SJwiCZUAkVS3SaVCxuOGZzKJDflQgAOw=="
                                 data-filename="81B35F67-C1B3-4A41-A765-E870FB7617F2.gif"
                                 style="font-family: inherit; font-size: 1rem; color: rgb(255, 255, 0); width: 22px;">
                             <font color="#ffff00" style="font-family: inherit; font-size: 1rem;">
-                                <font face="Arial"><span style="font-weight: bolder;">-GIÁ VÀNG 2sv (mua 150tv
-                                        tặng 1 bộ nrb)</span></font>
+                                <font face="Arial"><span style="font-weight: bolder;">-GIÁ VÀNG 2sv (mua 150tv tặng 1 bộ
+                                        nrb)</span></font>
                             </font>
                             <font color="#ffff00" style="font-family: inherit; font-size: 1rem;">
                                 <font face="Arial"><span style="font-weight: bolder;"><br></span></font>
-                            </font><b style="color: rgb(255, 255, 0); font-family: Arial; font-size: 1rem;">bán
-                                vàng 4.0 10k 40tv&nbsp;<br></b><b
-                                style="color: rgb(255, 255, 0); font-family: Arial; font-size: 1rem;">qua card
-                                3.5 10k 35tv</b>
+                            </font><b style="color: rgb(255, 255, 0); font-family: Arial; font-size: 1rem;">bán vàng 4.0
+                                10k 40tv&nbsp;<br></b><b
+                                style="color: rgb(255, 255, 0); font-family: Arial; font-size: 1rem;">qua card 3.5 10k
+                                35tv</b>
                         </h6>
-                        <h6><b style="color: rgb(255, 255, 0); font-family: Arial; font-size: 1rem;">- Nhập nick
-                                MTV sll, zalo&nbsp;</b>
+                        <h6><b style="color: rgb(255, 255, 0); font-family: Arial; font-size: 1rem;">- Nhập nick MTV
+                                sll, zalo&nbsp;</b>
                             <font color="#ffff00"><b>0377928648</b></font>
                         </h6>
                         <h6 style=""><span style="font-weight: bolder; font-family: Arial;">
-                                <font color="#ffff00">Tham gia GR FB </font><a
-                                    href="https://www.facebook.com/groups/hoisinhnro1/" target="_blank">
+                                <font color="#ffff00">Tham gia GR FB </font><a href="#" target="_blank">
                                     <font color="#00ffff"></font>
                                 </a>
-                                <font color="#00ffff"><a href="https://www.facebook.com/groups/758493088820076"
-                                        target="_blank">&gt; tại đây &lt;</a></font><br>
+                                <font color="#00ffff"><a href="#" target="_blank">&gt; tại đây &lt;</a></font><br>
                             </span>
                             <font face="Arial"><b>
                                     <font color="#ffff00">Tham gia box chat Zalo</font>
                                     <font color="#00ff00"> </font>
-                                    <font color="#00ffff"><a href="https://zalo.me/g/swebki851" target="_blank">&gt; tại
+                                    <font color="#00ffff"><a href="#" target="_blank">&gt; tại
                                             đây &lt;</a></font>
                                 </b></font>
                         </h6>

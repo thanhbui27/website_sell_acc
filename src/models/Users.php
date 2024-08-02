@@ -35,7 +35,6 @@ class Users
     $this->db->bind(':username', $username);
     return $this->db->single(); 
   }
-
   
 
 }

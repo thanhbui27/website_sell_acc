@@ -56,6 +56,7 @@ class RegisterController
                 $_SESSION['user'] = [
                     'username' => $username,
                     'is_login' => true,
+                    'money' => $this -> userModel ->  getUserByUsername($username) -> money,
                     'login_time' => time()
                 ];
                 header('location: ' . URLROOT . '/', true,302);
