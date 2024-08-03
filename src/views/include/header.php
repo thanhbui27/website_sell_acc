@@ -46,7 +46,7 @@
     <link data-n-head="ssr" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Goldman&amp;display=swap">
     <link data-n-head="ssr" rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&amp;family=Roboto:wght@900&amp;display=swap">
-    <link href="<?= URLROOT; ?>/template/theme/assets/frontend/css/style.css" rel="stylesheet" type="text/css">
+    <link href="<?= URLROOT; ?>/template/theme/assets/frontend/css/style.css?<?php echo time(); ?>" rel="stylesheet" type="text/css">
 
     <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet">
     <script src="https://connect.facebook.net/vi_VN/sdk.js?hash=a4bd6411be26d06c55cbe76fc57a9e53" async=""

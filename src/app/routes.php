@@ -11,6 +11,9 @@ $router->addRoute('auth/login', ['controller' => 'LoginController', 'action' => 
 $router->addRoute('auth/register', ['controller' => 'RegisterController', 'action' => 'registerUser']);
 
 $router -> addRoute("server-game/{id:\d+}",['controller' => 'ServerGameController' , 'action' => 'index']);
+$router -> addRoute("server-game/acc/{id:\d+}",['controller' => 'AccountController' , 'action' => 'index']);
+$router -> addRoute("server-game/acc/{id:\d+}/filter",['controller' => 'AccountController' , 'action' => 'filterAccount']);
+$router -> addRoute("server-game/acc/{id:\d+}/detail",['controller' => 'AccountController' , 'action' => 'detailAccount']);
 
 
 //This is template route

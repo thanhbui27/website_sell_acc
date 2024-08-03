@@ -16,12 +16,12 @@
                             <div class="hover:shadow-lg col-span-4 sm:col-span-4 md:col-span-2 lg:col-span-2 xl:col-span-2 relative rounded border border-gray-300"
                                 style="padding: 1px; padding: 1px;border: 3px solid #00afdb;">
                                 <!---->
-                                <a href="<?= URLROOT ?>/server_game/acc/<?= $server_game["id"] ?>">
+                                <a href="<?= URLROOT ?>/server-game/acc/<?= $server_game["id"] ?>">
                                     <img data-src="<?= URLROOT ?>/<?= $server_game["image"] ?>"
                                         class="rounded-t h-28 md:h-48 w-full object-fill object-center lazyLoad"
                                         src="<?= URLROOT ?>/<?=  $server_game["image"] ?>">
                                 </a>
-                                <div class="py-1"><a href="<?= URLROOT ?>/server_game/acc/<?= $server_game["id"] ?>">
+                                <div class="py-1"><a href="<?= URLROOT ?>/server-game/acc/<?= $server_game["id"] ?>">
                                         <div class="py-1 font-bold text-md px-1 truncate text-center uppercase"
                                             style="color: rgb(247, 176, 60);">
                                             <?= $server_game["name"] ?> </div>

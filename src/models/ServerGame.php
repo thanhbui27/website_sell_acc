@@ -11,6 +11,13 @@ class ServerGame
   {
     $this->db = new Database;
   }
+
+  public function getServerGameById($id){
+    $this -> db -> query("SELECT * FROM server_game WHERE id= :id");
+    $this -> db -> bind(':id', $id);
+    return $this -> db -> single();
+  }
+  
   public function getServerGameByGame($id){
     $this -> db -> query("SELECT * FROM server_game WHERE id_game = :id");
     $this -> db -> bind(':id', $id);

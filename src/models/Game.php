@@ -23,5 +23,6 @@ class Game
     $this->db->bind(':id', $id);
     return $this->db->single();
   }
-  
+
+
 }
