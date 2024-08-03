@@ -17,7 +17,6 @@ class ServerGameController
     }
     public function index($param)
     {
-        echo $param["id"];
         if (preg_match('/^[a-zA-Z0-9]+$/', $param["id"]) == 0) {
             header('location: ' . URLROOT . '/', true,302);
         }
