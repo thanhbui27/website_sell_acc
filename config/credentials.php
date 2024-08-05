@@ -1,6 +1,5 @@
 <?php 
-//Start Session
-session_start();
+
 
 // DB Params
 define('DB_HOST', 'localhost');

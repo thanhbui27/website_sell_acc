@@ -53,10 +53,12 @@ class RegisterController
                 return; 
             }
             if($this -> userModel -> createUsers($username,$password)){
+                $gu = $this -> userModel ->  getUserByUsername($username) ;           
                 $_SESSION['user'] = [
                     'username' => $username,
                     'is_login' => true,
-                    'money' => $this -> userModel ->  getUserByUsername($username) -> money,
+                    'money' => $gu -> money,
+                    "isAdmin" => $gu -> admin,
                     'login_time' => time()
                 ];
                 header('location: ' . URLROOT . '/', true,302);

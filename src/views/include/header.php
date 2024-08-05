@@ -67,8 +67,10 @@
 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js">
+
     </script>
     <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.3.2/dist/lazyload.min.js"></script>
     <!-- Open Graph data -->
@@ -79,7 +81,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
 
-    <link href="<?= URLROOT; ?>/template/theme/assets/frontend/css/root.css" rel="stylesheet" type="text/css">
+    <link href="<?= URLROOT; ?>/template/theme/assets/frontend/css/dataTable.css" rel="stylesheet" type="text/css">
     <link href="<?= URLROOT; ?>/template/theme/assets/frontend/css/snows.css" rel="stylesheet" type="text/css">
 
 </head>
@@ -125,9 +127,9 @@
                                 <li><a href="#" class="lg:p-3 py-1 lg:py-2 px-2 lg:px-3 block  lr-btn">LIÊN HỆ
                                         ADMIN</a>
                                 </li>
-                                <li><a href="nap-tien.html" class="lg:p-3 py-1 lg:py-2 px-2 lg:px-3 block lr-btn">NẠP
+                                <li><a href="<?= URLROOT ?>/auth/rechargeBanking" class="lg:p-3 py-1 lg:py-2 px-2 lg:px-3 block lr-btn">NẠP
                                         ATM</a></li>
-                                <li><a href="/History" class="lg:p-3 py-1 lg:py-2 px-2 lg:px-3 block lr-btn">LỊCH SỬ
+                                <li><a href="<?= URLROOT ?>/auth/historyBuy" class="lg:p-3 py-1 lg:py-2 px-2 lg:px-3 block lr-btn">LỊCH SỬ
                                         MUA
                                         ACC</a></li>
                                 <?php if(isset($_SESSION["user"])): ?>
