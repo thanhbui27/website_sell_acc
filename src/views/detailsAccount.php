@@ -17,9 +17,11 @@
             </div>
         </div>
         <div class="v-skull-top col-span-10 md:col-span-5 text-yellow-500 flex justify-end items-center flex-wrap">
+            <?php if(isset($_SESSION["user"])) : ?>
             <button class="ml-4 flex bg-red-500 text-white items-center justify-center h-10 text-2xl rounded focus:outline-none px-4 text-center" id="btnThanhToan">
                 MUA NGAY
             </button>
+            <?php endif; ?>
         </div>
     </div>
     <div class="mt-4">
@@ -43,5 +45,59 @@
         </div>
     </div>
 </div>
+<div id="thongbao"></div>
+<script type="text/javascript">
+$("#btnThanhToan").on("click", function() {
+    $('#btnThanhToan').html('ĐANG XỬ LÝ').prop('disabled',true);
 
+    Swal.fire({
+        title: 'Xác Nhận Thanh Toán',
+        text: "Bạn có đồng ý mua nick này không ?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Mua ngay'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: "<?= URLROOT ?>/server-game/acc/order",
+                method: "POST",
+                data: {
+                    id: <?= $data["game"]->id ?>                
+                },
+                success: function(response) {
+                    if(response.status === "success"){
+                        Swal.fire({
+                            title: 'Thanh toán thành công',
+                            text: response.message,
+                            icon: response.status,
+                        }).then((rs) => {
+                            if(rs.isConfirmed){
+                                window.location.href = '<?= URLROOT ?>/auth/historyBuy';
+                            }else{
+                                window.location.href = '<?= URLROOT ?>/auth/historyBuy';
+                            }
+                        })
+                    $('#btnThanhToan').html('THANH TOÁN').prop('disabled', false);
+                    }else{
+                        Swal.fire({
+                            title: 'Thất bại',
+                            text: response.message,
+                            icon: response.status,
+                        })
+                        $('#btnThanhToan').html('THANH TOÁN').prop('disabled', false);
+                    }        
+                }
+            });
+        } else {
+            
+            $('#btnThanhToan').html('THANH TOÁN').prop('disabled', false);
+        }
+    })
+
+
+
+});
+</script>
 <?php require_once APPROOT . '/src/views/include/footer.php'; ?>

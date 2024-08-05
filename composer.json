@@ -1,20 +1,21 @@
 {
-    "name": "lloticas/topping-site",
-    "authors": [
-        {
-            "name": "Jose Abraham Castillo",
-            "email": "crjoseabraham@gmail.com"
-        }
+  "name": "lloticas/topping-site",
+  "authors": [
+    {
+      "name": "bthanh",
+      "email": "bthanh2001@gmail.com"
+    }
+  ],
+  "autoload": {
+    "files": [
+      "config/constants.php",
+      "config/credentials.php",
+      "config/utilities.php",
+      "config/checkSession.php"
     ],
-    "autoload": {
-        "files": [
-            "config/constants.php",
-            "config/credentials.php",
-            "config/utilities.php"
-        ],
-        "classmap": [
-            "src/"
-        ]
-    },
-    "require": {}
+    "classmap": [
+      "src/"
+    ]
+  },
+  "require": {}
 }
