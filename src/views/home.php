@@ -35,19 +35,18 @@
                             </div>
                         </div>
                         <span class="tabcontent" id="nap" style="display:block;">
-                            <form class="w-full form-header">
+                            <form class="w-full form-header" action="<?= URLROOT ?>/auth/SubmitRechargeCard" method="POST">
                                 <div class="py-3 px-5">
                                     <span class="mb-2 block">
                                         <div class="flex items-center relative">
                                             <select id="loaithe"
+                                                name="card_type"
                                                 class="border-2 rounded block w-full bg-trueGray-900 focus:border-yellow-500 focus:bg-trueGray-900 text-white vuarobux-box w-full py-2 px-3 leading-tight focus:outline-none border-trueGray-600"
-                                                style="     border: solid 1px #99FFFF;box-shadow: 0 0 15px #99FFFF, inset 0 0 5px #99FFFF;">
+                                                style="border: solid 1px #99FFFF;box-shadow: 0 0 15px #99FFFF, inset 0 0 5px #99FFFF;">
                                                 <option value="">✨ Loại Thẻ ✨</option>
                                                 <option value="VIETTEL"> 🎫 Viettel 🎫</option>
                                                 <option value="VINAPHONE"> 🎫 Vinaphone 🎫</option>
                                                 <option value="MOBIFONE"> 🎫 Mobifone 🎫</option>
-                                                <option value="ZING"> 🎫 Zing 🎫</option>
-                                                <option value="VNMB"> 🎫 Vietnamobile 🎫</option>
                                             </select>
                                             <div
                                                 class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-trueGray-700">
@@ -63,6 +62,7 @@
                                     <span class="mb-2 block">
                                         <div class="flex items-center relative">
                                             <select id="menhgia"
+                                                name="card_amount"
                                                 class="border-2 rounded block w-full bg-trueGray-900 focus:border-yellow-500 focus:bg-trueGray-900 text-white vuarobux-box w-full py-2 px-3 leading-tight focus:outline-none border-trueGray-600"
                                                 style="     border: solid 1px #99FFFF;box-shadow: 0 0 15px #99FFFF, inset 0 0 10px #99FFFF;">
                                                 <option value="">💸 Chọn mệnh giá 💸</option>
@@ -87,24 +87,26 @@
                                     </span>
                                     <span class="mb-2 block">
                                         <div class="flex items-center relative">
-                                            <input type="text" id="pin" placeholder="Mã số thẻ"
+                                            <input type="text" id="pin" placeholder="Mã số thẻ" name="pin"
                                                 class="focus:outline-none appearance-none bg-trueGray-900 block leading-tight px-3 py-2 rounded text-white vuarobux-box w-full "
-                                                style="     border: solid 1px #99FFFF;box-shadow: 0 0 15px #99FFFF, inset 0 0 5px #99FFFF;  ">
+                                                style="border: solid 1px #99FFFF;box-shadow: 0 0 15px #99FFFF, inset 0 0 5px #99FFFF;  ">
                                         </div>
                                     </span>
                                     <span class="mb-2 block">
                                         <div class="flex items-center relative">
-                                            <input type="text" id="seri" placeholder="Số serial"
+                                            <input type="text" id="seri" placeholder="Số serial" name="serial"
                                                 class="focus:outline-none appearance-none bg-trueGray-900 block leading-tight px-3 py-2 rounded text-white vuarobux-box w-full "
                                                 style="     border: solid 1px #99FFFF;box-shadow: 0 0 15px #99FFFF, inset 0 0 5px #99FFFF; ">
                                         </div>
                                     </span>
                                     <div class="mt-4">
-                                        <button type="button" id="NapThe"
-                                            class="ff-lalezar flex focus:outline-none h-10 homepayin items-center justify-center pt-1 px-4 rounded text-2xl text-center uppercase vuarobux-box vuarobux-title w-full"
-                                            style="/* color: rgb(153,255,255); */padding: 5px;border: solid 1px #99FFFF;box-shadow: 0 0 15px #99FFFF, inset 0 0 20px #99FFFF;">
-                                            Nạp Ngay
-                                        </button>
+                                        <?php if (isset($_SESSION["user"])): ?>
+                                            <button type="submit" id="NapThe"
+                                                class="ff-lalezar flex focus:outline-none h-10 homepayin items-center justify-center pt-1 px-4 rounded text-2xl text-center uppercase vuarobux-box vuarobux-title w-full"
+                                                style="/* color: rgb(153,255,255); */padding: 5px;border: solid 1px #99FFFF;box-shadow: 0 0 15px #99FFFF, inset 0 0 20px #99FFFF;">
+                                                Nạp Ngay
+                                            </button>
+                                        <?php endif; ?>
                                     </div>
                                     <div class="text-center mt-2 text-white font-semibold text-sm">
                                         Hãy chọn đúng mệnh giá. Sai sẽ mất thẻ
@@ -246,6 +248,7 @@
                                         </span>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -254,63 +257,63 @@
         </div>
     </div>
 
-    <?php foreach($data["category"] as $cate): ?>
-    <center>
-        <div class="fade-in mb-2 py-2 md:mb-4 block uppercase md:py-4 text-center text-yellow-400 md:text-3xl text-2xl font-extrabold vuarobux-title-two "
-            style="max-width: 450px;background: #333;border-radius: 5px;box-shadow: 0 0 15px #99FFFF, inset 0 0 20px #99FFFF;">
-            ✨ <?=  $cate["title"]; ?>✨
-        </div>
-    </center>
-    <div class="pb-10">
-        <div class="v-card w-full max-w-6xl mx-auto">
-            <div class="md:mx-0">
-                <div class="py-2">
-                    <div class="mb-16">
-                        <div class="mb-4 py-4 md:p-4 vuarobux-box"
-                            style="border: solid 1px #99FFFF;box-shadow: 0 0 15px #99FFFF, inset 0 0 10px #99FFFF;">
-                            <div class="fade-in grid grid-cols-8 gap-2 px-2 md:px-0">
-                                <?php if(count($cate["games"]) > 0) : ?>
-                                <?php foreach($cate["games"] as $game): ?>
-                                <div class="col-span-4 lg:col-span-2 md:col-span-2 relative rounded sm:col-span-4 vua vuarobux-box vuarobux-title-two xl:col-span-2"
-                                    style="border: solid 1px #99FFFF;box-shadow: 0 0 15px #99FFFF, inset 0 0 5px #99FFFF;">
-                                    <a href="<?= URLROOT; ?>/server-game/<?= $game -> id ?>">
-                                        <img data-src="<?=URLROOT  ?>/<?=$game -> image  ?>"
-                                            class="rounded-t h-28 md:h-48 w-full object-fill object-center lazyLoad">
-                                    </a>
-                                    <div class="py-1"><a href="<?= URLROOT; ?>/server-game/<?= $game -> id ?>">
-                                            <div class="py-1 font-bold text-md px-1 truncate text-center uppercase"
-                                                style="color: #fff;">
-                                                <?=$game -> name  ?> </div>
-                                            <div class="flex px-2 mt-2 justify-center">
-                                            </div>
-                                        </a>
-                                        <div class="mt-2 mb-2 px-2 py-1 flex items-center justify-center mt-9">
-                                            <a href="<?= URLROOT; ?>/server-game/<?= $game -> id ?>">
-
-                                            </a>
-                                            <div class="button" id="button-6"
+    <?php foreach ($data["category"] as $cate): ?>
+        <center>
+            <div class="fade-in mb-2 py-2 md:mb-4 block uppercase md:py-4 text-center text-yellow-400 md:text-3xl text-2xl font-extrabold vuarobux-title-two "
+                style="max-width: 450px;background: #333;border-radius: 5px;box-shadow: 0 0 15px #99FFFF, inset 0 0 20px #99FFFF;">
+                ✨ <?= $cate["title"]; ?>✨
+            </div>
+        </center>
+        <div class="pb-10">
+            <div class="v-card w-full max-w-6xl mx-auto">
+                <div class="md:mx-0">
+                    <div class="py-2">
+                        <div class="mb-16">
+                            <div class="mb-4 py-4 md:p-4 vuarobux-box"
+                                style="border: solid 1px #99FFFF;box-shadow: 0 0 15px #99FFFF, inset 0 0 10px #99FFFF;">
+                                <div class="fade-in grid grid-cols-8 gap-2 px-2 md:px-0">
+                                    <?php if (count($cate["games"]) > 0) : ?>
+                                        <?php foreach ($cate["games"] as $game): ?>
+                                            <div class="col-span-4 lg:col-span-2 md:col-span-2 relative rounded sm:col-span-4 vua vuarobux-box vuarobux-title-two xl:col-span-2"
                                                 style="border: solid 1px #99FFFF;box-shadow: 0 0 15px #99FFFF, inset 0 0 5px #99FFFF;">
-                                                <a href="<?= URLROOT; ?>/server-game/<?= $game -> id ?>">
-                                                    <div id="spin"></div>
-                                                </a><a href="<?= URLROOT; ?>/server-game/<?= $game -> id ?>">Mua Ngay
+                                                <a href="<?= URLROOT; ?>/server-game/<?= $game->id ?>">
+                                                    <img data-src="<?= URLROOT  ?>/<?= $game->image  ?>"
+                                                        class="rounded-t h-28 md:h-48 w-full object-fill object-center lazyLoad">
                                                 </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <?php endforeach;?>
-                                <?php endif; ?>
-                            </div>
+                                                <div class="py-1"><a href="<?= URLROOT; ?>/server-game/<?= $game->id ?>">
+                                                        <div class="py-1 font-bold text-md px-1 truncate text-center uppercase"
+                                                            style="color: #fff;">
+                                                            <?= $game->name  ?> </div>
+                                                        <div class="flex px-2 mt-2 justify-center">
+                                                        </div>
+                                                    </a>
+                                                    <div class="mt-2 mb-2 px-2 py-1 flex items-center justify-center mt-9">
+                                                        <a href="<?= URLROOT; ?>/server-game/<?= $game->id ?>">
 
+                                                        </a>
+                                                        <div class="button" id="button-6"
+                                                            style="border: solid 1px #99FFFF;box-shadow: 0 0 15px #99FFFF, inset 0 0 5px #99FFFF;">
+                                                            <a href="<?= URLROOT; ?>/server-game/<?= $game->id ?>">
+                                                                <div id="spin"></div>
+                                                            </a><a href="<?= URLROOT; ?>/server-game/<?= $game->id ?>">Mua Ngay
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
-                </div>
 
+                </div>
             </div>
         </div>
-    </div>
 
-    <?php endforeach;?>
+    <?php endforeach; ?>
 
     <!-- <center>
         <div class="fade-in mb-2 py-2 md:mb-4 block uppercase md:py-4 text-center text-yellow-400 md:text-3xl text-2xl font-extrabold vuarobux-title-two "
@@ -571,16 +574,24 @@
     </div>
 </div>
 <script>
-function FuncHideModal() {
-    var x = document.getElementById("indexModal");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
+    <?php if(!empty($data["message"]) && !empty($data["status"])): ?>
+        Swal.fire({
+        title: "<?= $data["status"] ?>",
+        text: "<?= $data["message"] ?>",
+        icon: "error",
+    })
+    <?php endif; ?>
+
+    function FuncHideModal() {
+        var x = document.getElementById("indexModal");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
     }
-}
 </script>
 <script>
-new ClipboardJS('.copy');
+    new ClipboardJS('.copy');
 </script>
 <?php require_once APPROOT . '/src/views/include/footer.php'; ?>

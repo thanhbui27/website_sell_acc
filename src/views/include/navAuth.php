@@ -30,9 +30,8 @@
                 </a>
             </li>
             <li class="py-1 border-b border-gray-200">
-                <a href="<?= URLROOT ?>/auth/profile" class="">
-                    <span class="relative mr-2 text-lg" style="top: 1.5px;"><i class="bx bxs-receipt"></i></span>Lịch sử
-                    cày thuê
+                <a href="<?= URLROOT ?>/auth/historyBanking" class="">
+                    <span class="relative mr-2 text-lg" style="top: 1.5px;"><i class="bx bxs-receipt"></i></span>Lịch sử banking
                 </a>
             </li>
 

@@ -93,7 +93,7 @@ require_once APPROOT . '/src/views/include/header.php';
                 alert("Số tiền cần nạp phải lớn hơn 10.000");
             }else{
                 let money = $("#money").val()
-            let content = `NAPTIENWEB <?= $_SESSION["user"]["username"] ?>`
+            let content = `NAPSTARAI <?= $_SESSION["user"]["username"] ?>`
             let img = `https://img.vietqr.io/image/<?=BANK?>-<?= ACCOUNT_BANK ?>-compact2.png?amount=${money}&addInfo=${content}&accountName=<?= $_SESSION["user"]["username"] ?>`
             $("#imgQR").html(`<img src="${img}" style="margin:auto">`)
         

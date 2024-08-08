@@ -42,9 +42,14 @@ class LoginController
                 view("Auth/login", $data);        
                 return; 
             }
-
-            if($this -> userModel -> login($username,$password)){  
-                $gu = $this -> userModel ->  getUserByUsername($username) ;           
+           
+            if($this -> userModel -> login($username,$password)){      
+                $gu = $this -> userModel ->  getUserByUsername($username);  
+                if($gu ->isBan == 1){
+                    $data = ['message' => 'Tài khoản của bạn đã bị khoá'];         
+                    view("Auth/login", $data);        
+                    return; 
+                }          
                 $_SESSION['user'] = [
                     'username' => $username,
                     'is_login' => true,
