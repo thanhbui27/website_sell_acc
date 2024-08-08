@@ -20,7 +20,6 @@ class HistoryBuyController
         $this -> game = new Game;
     }
     public function index(){
-        // return "https://img.vietqr.io/image/$bank_type-$bank_account-compact2.png?amount=$sotien&addInfo=$description&accountName=$account_name";
         if(!isset($_SESSION["user"])){
             header('location: ' . URLROOT . '/', true,302);
             return;
@@ -36,7 +35,14 @@ class HistoryBuyController
     }
 
     public function managerBilling(){
-        view("admin/managerBill");
+        if(!isset($_SESSION["user"]) || !$_SESSION["user"]["isAdmin"]){
+            header('location: ' . URLROOT . '/', true,302);
+            exit();
+        }
+        $data = [
+            "billing" =>   $this -> order -> getAllInfoOrder()
+        ];
+        view("admin/managerBill",  $data);
     }
 
     public function orderAccount(){
@@ -72,6 +78,7 @@ class HistoryBuyController
                 echo json_encode($data);
                 exit();
             }
+
             if($getUser -> money < $getAccountGame[0] -> price){
                 $data = [
                     "status" => "error",
@@ -81,30 +88,27 @@ class HistoryBuyController
                 echo json_encode($data);
                 exit();
             }
-            $addOrder = $this -> order -> addOrder($id,$getUser -> id);
-            if($addOrder){
-                $getOrder = $this -> order -> getOrderByIdGame($id,$getUser -> id);
-               
-                $addDetailsOrder = $this -> order -> addOrderDetails($getOrder -> id, $getAccountGame[0] -> price);
-                if($addDetailsOrder){
-                    $updateStatusGame = $this ->account_game -> updateStatusGame($id);
+    
+            $getGame = $this-> game -> getGameById($getAccountGame[0] -> game_id); 
+            $getServerGame = $this -> game -> getServerGameById($getAccountGame[0] ->id_server); 
+            
+            $addOrder = $this -> order -> addOrder($getUser -> id,$getGame -> name,$getAccountGame[0] -> account_username,$getAccountGame[0] -> account_password,$getAccountGame[0] -> price,$getServerGame -> name);
+            if($addOrder){               
+                $updateStatusGame = $this ->account_game -> updateStatusGame($id);                        
+                $preAmount = $getUser -> money;
+                $changeAmount = $getAccountGame[0] -> price;
+                $newAmount = $getUser -> money - $getAccountGame[0] -> price;
+                $description = "Mua ".$getGame -> name."";
 
-                    $getGame = $this-> game -> getGameById($getAccountGame[0] -> game_id);              
-                    $preAmount = $getUser -> money;
-                    $changeAmount = $getAccountGame[0] -> price;
-                    $newAmount = $getUser -> money - $getAccountGame[0] -> price;
-                    $description = "Mua ".$getGame -> name."";
-
-                    $addHistoryTransition = $this -> order -> addHistoryTransactions($preAmount,$changeAmount,$newAmount,$description,$getUser->id);
-                    $updateMoney = $this -> user -> subMoney($getAccountGame[0] -> price,$getUser -> username);
-                    if($updateStatusGame && $addHistoryTransition && $updateMoney){
-                        $data = [
-                            "status" => "success",
-                            "message" => "Mua nick thành công"
-                        ];
-                    }
-                }
-
+                $addHistoryTransition = $this -> order -> addHistoryTransactions($preAmount,$changeAmount,$newAmount,$description,$getUser->id);
+                $updateMoney = $this -> user -> subMoney($getAccountGame[0] -> price,$getUser -> username);
+                if($updateStatusGame && $addHistoryTransition && $updateMoney){
+                    $data = [
+                        "status" => "success",
+                        "message" => "Mua nick thành công"
+                    ];
+                }          
+              
             }else {
                 $data = [
                     "status" => "error",
@@ -117,12 +121,7 @@ class HistoryBuyController
                 "status" => "error",
                 "message" => "id not found"
             ];
-        }
-        
-    
-          
-    
-       
+        }   
         header('Content-Type: application/json');
         echo json_encode($data);
     }

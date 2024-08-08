@@ -1,4 +1,7 @@
-<?php require_once APPROOT . '/src/views/admin/include/sidebar.php'; ?>
+<?php 
+$title = "Quản lý tài khoản";
+require_once APPROOT . '/src/views/admin/include/sidebar.php'; 
+?>
 <script src="<?= URLROOT; ?>/template/theme/assets/frontend/plugins/jquery/jquery-2.1.0.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"> </script>
@@ -11,7 +14,7 @@
             </div>
             <div class="card-body px-0 pt-0 pb-2">
               <div class="table-responsive p-0 p-2">
-                <table id="tableAccount" class="table align-items-center mb-0 ">
+                <table id="tableAccount" class="table align-items-center mb-0 " style="border-bottom:1px solid #efefef">
                   <thead>
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Info</th>
@@ -24,14 +27,14 @@
                   </thead>
                   <tbody>
                     <?php foreach($data["users"] as $user): ?>
-                    <tr>
+                    <tr style="border-bottom: #efefef;">
                       <td>
                         <div class="d-flex px-2 py-1">
                           <div>
                             <img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3" alt="user1">
                           </div>
                           <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm"><?= $user -> fullname ?></h6>
+                            <h6 class="mb-0 text-sm"><?= $user -> username ?></h6>
                             <p class="text-xs text-secondary mb-0"><?= $user -> email ?></p>
                           </div>
                         </div>
@@ -52,9 +55,9 @@
                       <td class="align-middle text-center">
                         <span class="text-secondary text-xs font-weight-bold">
                         <?php if($user -> isBan == 1): ?>
-                          <button class="btn btn-warning" id="btnUnLock" data-id = "<?= $user ->id ?>">UnLock</button>
+                          <button class="btn btn-warning btnUnLock" data-id = "<?= $user ->id ?>">UnLock</button>
                         <?php else: ?>
-                          <button class="btn btn-danger" id="btnLock" data-id ="<?= $user ->id ?>">Lock</button>                        
+                          <button class="btn btn-danger btnLock"  data-id ="<?= $user ->id ?>">Lock</button>                        
                           <?php endif; ?>                  
                         </span>
                       </td>
@@ -75,10 +78,10 @@
       <script>
         $(document).ready(function() {
           $('#tableAccount').DataTable();
-          $("#btnLock").on("click", function() {
+          $(document).on('click', '.btnLock', function() {
             let id = $(this).attr("data-id") ;
-
-              $('#btnLock').html('ĐANG XỬ LÝ').prop('disabled',true);
+    
+              $(this).html('ĐANG XỬ LÝ').prop('disabled',true);
               Swal.fire({
                   title: 'Cảnh báo',
                   text: "Bạn có muốn khoá account này không?",
@@ -114,20 +117,21 @@
                                       text: response.message,
                                       icon: response.status,
                                   })
-                                  $('#btnLock').html('Lock').prop('disabled', false);
+                                  $(this).html('Lock').prop('disabled', false);
                               }        
                           }
                       });
                   } else {
                       
-                      $('#btnLock').html('Lock').prop('disabled', false);
+                      $(this).html('Lock').prop('disabled', false);
                   }
               })
 
           });
+   
 
-          $("#btnUnLock").on("click", function() {
-              $('#btnUnLock').html('ĐANG XỬ LÝ').prop('disabled',true);
+          $(document).on('click', '.btnUnLock', function() {
+            $(this).html('ĐANG XỬ LÝ').prop('disabled',true);
               let id = $(this).attr("data-id") ;
               Swal.fire({
                   title: 'Cảnh báo',
@@ -164,18 +168,18 @@
                                       text: response.message,
                                       icon: response.status,
                                   })
-                                  $('#btnUnLock').html('Lock').prop('disabled', false);
+                                  $(this).html('Lock').prop('disabled', false);
                               }        
                           }
                       });
                   } else {
                       
-                      $('#btnUnLock').html('Lock').prop('disabled', false);
+                      $(this).html('Lock').prop('disabled', false);
                   }
               })
 
           });
+          })
 
-      });
       </script>
 <?php require_once APPROOT . '/src/views/admin/include/footer.php'; ?>

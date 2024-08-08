@@ -7,6 +7,22 @@ $router->addRoute('admin/dashboard', ['controller' => 'Dashboard', 'action' => '
 $router->addRoute('admin/dashboard/users', ['controller' => 'UserController', 'action' => 'managerUser']);
 $router->addRoute('admin/dashboard/billing', ['controller' => 'HistoryBuyController', 'action' => 'managerBilling']);
 $router->addRoute('admin/dashboard/games', ['controller' => 'ManagerGame', 'action' => 'index']);
+$router->addRoute('admin/dashboard/games/cate-game', ['controller' => 'ManagerGame', 'action' => 'cateGame']);
+$router->addRoute('admin/dashboard/games/cate-game/action', ['controller' => 'ManagerGame', 'action' => 'ActionHandleCategoryGame']);
+$router->addRoute('admin/dashboard/games/addNewGame', ['controller' => 'ManagerGame', 'action' => 'addNewGame']);
+$router->addRoute('admin/dashboard/games/game', ['controller' => 'ManagerGame', 'action' => 'game']);
+$router->addRoute('admin/dashboard/games/game/action', ['controller' => 'ManagerGame', 'action' => 'ActionHandleGame']);
+$router->addRoute('admin/dashboard/games/addNewServerGame', ['controller' => 'ManagerGame', 'action' => 'addNewServerGame']);
+$router->addRoute('admin/dashboard/games/server-game', ['controller' => 'ManagerGame', 'action' => 'serverGame']);
+$router->addRoute('admin/dashboard/games/getServerGame', ['controller' => 'ManagerGame', 'action' => 'getServerGame']);
+$router->addRoute('admin/dashboard/games/server-game/action', ['controller' => 'ManagerGame', 'action' => 'ActionHandlServereGame']);
+$router->addRoute('admin/dashboard/games/addNewAccountGame', ['controller' => 'ManagerGame', 'action' => 'addNewAccountGame']);
+$router->addRoute('admin/dashboard/games/account-game', ['controller' => 'ManagerGame', 'action' => 'accountGame']);
+$router->addRoute('admin/dashboard/games/account-game/getImage', ['controller' => 'ManagerGame', 'action' => 'getImage']);
+$router->addRoute('admin/dashboard/games/account-game/addImages', ['controller' => 'ManagerGame', 'action' => 'addImages']);
+$router->addRoute('admin/dashboard/games/account-game/removeImage', ['controller' => 'ManagerGame', 'action' => 'removeImage']);
+$router->addRoute('admin/dashboard/games/account-game/action', ['controller' => 'ManagerGame', 'action' => 'ActionHandleAccountGame']);
+$router->addRoute('admin/dashboard/addCategory', ['controller' => 'ManagerGame', 'action' => 'addCategoryGame']);
 
 
 

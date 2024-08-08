@@ -12,6 +12,40 @@ class AccountGame
     $this->db = new Database;
   }
   
+  public function addNewAccountGame($name,$description,$game_id,$price,$image,$rank,$account_username,$account_password,$id_server){
+    $this->db->query("INSERT INTO account_game (name,description,game_id,price,image,rank,account_username,account_password,id_server) VALUE(:name,:description,:game_id,:price,:image,:rank,:account_username,:account_password,:id_server)");
+    $this->db->bind(':name', $name);
+    $this->db->bind(':description', $description);
+    $this->db->bind(':game_id', $game_id);
+    $this->db->bind(':price', $price);
+    $this->db->bind(':image', $image);
+    $this->db->bind(':rank', $rank);
+    $this->db->bind(':account_username', $account_username);
+    $this->db->bind(':account_password', $account_password);
+    $this->db->bind(':id_server', $id_server);
+    if ($this->db->execute())
+      return true;
+    return false;
+  }
+
+  public function UpdateAccountGame($name, $description, $game_id, $price, $image, $rank, $account_username, $account_password, $id_server, $id){
+    $this->db->query("UPDATE account_game SET name = :name, description = :description, game_id = :game_id, price = :price, image = :image, rank = :rank, account_username = :account_username, account_password = :account_password, id_server = :id_server WHERE id = :id");
+    $this->db->bind(':name', $name);
+    $this->db->bind(':description', $description);
+    $this->db->bind(':game_id', $game_id);
+    $this->db->bind(':price', $price);
+    $this->db->bind(':image', $image);
+    $this->db->bind(':rank', $rank);
+    $this->db->bind(':account_username', $account_username);
+    $this->db->bind(':account_password', $account_password);
+    $this->db->bind(':id_server', $id_server);
+    $this->db->bind(':id', $id);
+    if ($this->db->execute())
+        return true;
+    return false;
+}
+  
+
   public function getAllAccountBuy(){
     $this -> db -> query("SELECT * FROM account_game WHERE status = 1");
     return $this -> db -> resultSet();
@@ -19,6 +53,11 @@ class AccountGame
 
   public function getAllAccount(){
     $this -> db -> query("SELECT * FROM account_game");
+    return $this -> db -> resultSet();
+  }
+
+  public function getAllAccountDetails(){
+    $this -> db -> query("SELECT ac.*,g.name AS name_game,sg.name AS name_server FROM account_game AS ac INNER JOIN game AS g ON g.id = ac.game_id INNER JOIN server_game as sg ON sg.id = ac.id_server");
     return $this -> db -> resultSet();
   }
 
@@ -47,6 +86,13 @@ class AccountGame
     $this->db->bind(':idGame', $id);
     return $this->db->resultSet();
   }
+
+  public function getAccountGame($id) {
+    $this->db->query("SELECT * FROM account_game WHERE id = :idGame");
+    $this->db->bind(':idGame', $id);
+    return $this->db->single();
+  }
+
   public function filterGameByPrice($min,$max){
     $this->db->query("SELECT * FROM account_game WHERE price >= :min AND price <= :max AND status = 0");
     $this->db->bind(':min', $min);
@@ -60,6 +106,15 @@ class AccountGame
     return $this->db->resultSet();
   }
 
+  public function addImageById($id,$image){
+    $this->db->query("INSERT INTO game_account_image (account_game_id,image) VALUE (:account_game_id,:image)");
+    $this->db->bind(':account_game_id', $id);
+    $this->db->bind(':image', $image);
+    if ($this->db->execute())
+      return true;
+    return false;
+  }
+
   public function updateStatusGame($id){
     $this->db->query("UPDATE account_game SET status = 1 WHERE id = :id");
     $this->db->bind(':id', $id);
@@ -68,8 +123,61 @@ class AccountGame
     return false;
   }
   public function getHistoryBuy($id) {
-    $this -> db -> query("SELECT ac.*,o.id AS id_order, od.order_date,g.name AS game_name ,g.description AS game_description,g.image AS game_image FROM account_game AS ac INNER JOIN game AS g ON g.id = ac.game_id INNER JOIN orders AS o INNER JOIN order_detail AS od WHERE o.account_game_id = ac.id AND o.id = od.order_id AND o.account_id = :id");
+    $this -> db -> query("SELECT * FROM orders WHERE account_id = :id");
     $this->db->bind(':id', $id);
+    return $this->db->resultSet();
+  }
+
+
+  public function removeAccountGameById($id){
+    $this -> db -> query("DELETE FROM account_game where id = :id");
+    $this -> db -> bind(':id', $id);
+    if($this -> db -> execute())
+        return true;
+    return false;
+  }
+
+  public function removeAccountGameByIdGame($id){
+    $this -> db -> query("DELETE FROM account_game where game_id = :id");
+    $this -> db -> bind(':id', $id);
+    if($this -> db -> execute())
+        return true;
+    return false;
+  }
+
+  public function removeAccountByServerId($id){
+    $this -> db -> query("DELETE FROM account_game where id_server = :id");
+    $this -> db -> bind(':id', $id);
+    if($this -> db -> execute())
+        return true;
+    return false;
+  }
+
+  public function removeImageAccountGame($id){
+    $this -> db -> query("DELETE FROM game_account_image where account_game_id = :id");
+    $this -> db -> bind(':id', $id);
+    if($this -> db -> execute())
+        return true;
+    return false;
+  }
+
+  public function removeImageAccountGameById($id){
+    $this -> db -> query("DELETE FROM game_account_image where id = :id");
+    $this -> db -> bind(':id', $id);
+    if($this -> db -> execute())
+        return true;
+    return false;
+  }
+
+
+  public function getAccountGameByIdGame($idGame)  {
+    $this->db->query("SELECT * FROM account_game WHERE game_id = :idGame ");
+    $this->db->bind(':idGame', $idGame);
+    return $this->db->resultSet();
+  }
+  public function getAccountGameByIdServerGame($idGame)  {
+    $this->db->query("SELECT * FROM account_game WHERE id_server = :idGame ");
+    $this->db->bind(':idGame', $idGame);
     return $this->db->resultSet();
   }
 }
