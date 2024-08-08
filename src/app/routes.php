@@ -40,8 +40,14 @@ $router->addRoute('auth/unLock', ['controller' => 'UserController', 'action' => 
 $router->addRoute('auth/balanceFluctuations', ['controller' => 'UserController', 'action' => 'balanceFluctuations']);
 $router->addRoute('auth/changePassword', ['controller' => 'UserController', 'action' => 'changePassword']);
 $router->addRoute('auth/rechargeCard', ['controller' => 'RechargeController', 'action' => 'rechargeCard']);
+$router->addRoute('auth/rechargeCard/handleCallback', ['controller' => 'RechargeController', 'action' => 'handleCallback']);
+$router->addRoute('auth/SubmitRechargeCard', ['controller' => 'RechargeController', 'action' => 'SubmitRechargeCard']);
 $router->addRoute('auth/rechargeBanking', ['controller' => 'RechargeController', 'action' => 'rechargeBanking']);
 $router->addRoute('auth/historyBuy', ['controller' => 'HistoryBuyController', 'action' => 'index']);
+$router->addRoute('auth/historyBanking', ['controller' => 'HistoryBuyController', 'action' => 'historyBanking']);
+$router->addRoute('auth/approvedBanking', ['controller' => 'HistoryBuyController', 'action' => 'approvedBanking']);
+
+
 
 
 

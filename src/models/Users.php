@@ -82,4 +82,13 @@ class Users
     $this->db->bind(':id', $id);
     return $this->db->single(); 
   }
+
+  public function updateMoneyUser($username,$money)  {
+    $this -> db->query("UPDATE `account` SET totalMoney = totalMoney + :money, money = money +:money WHERE username = :username");
+    $this -> db -> bind(":money" ,$money);
+    $this -> db -> bind(":username",$username);
+    if ($this->db->execute())
+      return true;
+    return false;
+  }
 }

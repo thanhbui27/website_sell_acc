@@ -22,7 +22,9 @@ class Index
 
 
   public function getGameInCategory() {
-    $data = [ 'category' => []];
+    $data = [ 'category' => [],
+    "message" => "",
+    "status" => ""];
     $cates = $this -> category -> getAllCategory();
     foreach($cates as $cate) {
       $data["category"][] = [
