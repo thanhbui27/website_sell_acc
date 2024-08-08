@@ -49,7 +49,6 @@
 <script type="text/javascript">
 $("#btnThanhToan").on("click", function() {
     $('#btnThanhToan').html('ĐANG XỬ LÝ').prop('disabled',true);
-
     Swal.fire({
         title: 'Xác Nhận Thanh Toán',
         text: "Bạn có đồng ý mua nick này không ?",
@@ -67,6 +66,7 @@ $("#btnThanhToan").on("click", function() {
                     id: <?= $data["game"]->id ?>                
                 },
                 success: function(response) {
+                    console.log(response)
                     if(response.status === "success"){
                         Swal.fire({
                             title: 'Thanh toán thành công',

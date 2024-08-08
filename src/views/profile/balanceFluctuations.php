@@ -1,4 +1,6 @@
-<?php require_once APPROOT . '/src/views/include/header.php'; ?>
+<?php 
+$title = "BIẾN ĐỘNG SÓ DƯ";
+require_once APPROOT . '/src/views/include/header.php'; ?>
 <div class="w-full max-w-6xl mx-auto pt-6 md:pt-8 pb-8">
     <div class="grid grid-cols-8 gap-4">
         </div>

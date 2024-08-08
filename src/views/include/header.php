@@ -21,23 +21,23 @@
 
 <head>
     <meta charset="utf-8">
-    <title>HOME | clone web.com</title>
-    <meta name="description" content="clone web.com">
-    <meta name="keywords" content="clone web.com clone web clone web">
+    <title>  <?php echo isset($title) ? $title : 'HOME' ?> </title>
+    <meta name="description" content="<?=DEFAUL_URL_WEB ?>">
+    <meta name="keywords" content="<?=DEFAUL_URL_WEB ?> web ban nick uy tin">
     <!-- Open Graph data -->
     <link rel="icon" type="image/png" href="<?= URLROOT; ?>/template/theme/assets/image/9EyDJaM.gif">
-    <meta property="og:title" content="clone web.com">
+    <meta property="og:title" content="<?=DEFAUL_URL_WEB ?>">
     <meta property="og:type" content="Website">
-    <meta property="og:url" content="#">
+    <meta property="og:url" content="<?=DEFAUL_URL_WEB ?>">
     <meta property="og:image" content="<?= URLROOT; ?>/template/theme/assets/image/9EyDJaM.gif">
-    <meta property="og:description" content="clone web.com">
-    <meta property="og:site_name" content="clone web.com">
-    <meta property="article:section" content="clone web.com">
-    <meta property="article:tag" content="clone web.com clone web clone web">
+    <meta property="og:description" content="<?=DEFAUL_URL_WEB ?>">
+    <meta property="og:site_name" content="<?=DEFAUL_URL_WEB ?>">
+    <meta property="article:section" content="<?=DEFAUL_URL_WEB ?>">
+    <meta property="article:tag" content="<?=DEFAUL_URL_WEB ?> web ban nick uy tin">
     <!-- Twitter Card data -->
     <meta name="twitter:card" content="<?= URLROOT; ?>/template/theme/assets/image/9EyDJaM.gif">
-    <meta name="twitter:title" content="clone web.com">
-    <meta name="twitter:description" content="clone web.com">
+    <meta name="twitter:title" content="<?=DEFAUL_URL_WEB ?>">
+    <meta name="twitter:description" content="<?=DEFAUL_URL_WEB ?>">
     <meta name="twitter:image:src" content="<?= URLROOT; ?>/template/theme/assets/image/9EyDJaM.gif">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1.0, user-scalable=no" name="viewport">
@@ -94,7 +94,7 @@
                 <header class="mx-auto w-full max-w-6xl px-2 flex flex-wrap items-center py-2"
                     style="background: #333;color:white;">
                     <div class="flex-1 flex justify-between items-center">
-                        <a href="https://clone web.com/"><img width="110" height="50"
+                        <a href="https://<?=DEFAUL_URL_WEB ?>/"><img width="110" height="50"
                                 src="<?= URLROOT; ?>/template/theme/assets/image/9EyDJaM.gif" class="v-logo"></a>
                     </div>
                     <?php if(isset($_SESSION["user"])): ?>
@@ -124,9 +124,12 @@
                                 <li><a href="<?= URLROOT; ?>"
                                         class="lg:p-3 py-1 lg:py-2 px-2 lg:px-3 block  lr-btn">TRANG CHỦ</a>
                                 </li>
-                                <li><a href="#" class="lg:p-3 py-1 lg:py-2 px-2 lg:px-3 block  lr-btn">LIÊN HỆ
+                                <?php if(isset($_SESSION["user"]) && $_SESSION["user"]["isAdmin"] == 1): ?>
+                                <li>
+                                    <a href="<?= URLADMINROOT ?>/dashboard" class="lg:p-3 py-1 lg:py-2 px-2 lg:px-3 block  lr-btn">TRANG ADMIN
                                         ADMIN</a>
                                 </li>
+                                <?php endif; ?>
                                 <li><a href="<?= URLROOT ?>/auth/rechargeBanking" class="lg:p-3 py-1 lg:py-2 px-2 lg:px-3 block lr-btn">NẠP
                                         ATM</a></li>
                                 <li><a href="<?= URLROOT ?>/auth/historyBuy" class="lg:p-3 py-1 lg:py-2 px-2 lg:px-3 block lr-btn">LỊCH SỬ

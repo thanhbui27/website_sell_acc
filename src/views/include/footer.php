@@ -38,7 +38,7 @@
                     style="border-right: 2px solid #99FFFF;border-left: 2px solid #99FFFF;">
                     <span class="mt-4 py-4 px-4 flex flex-col items-center">
                         <h3 style="font-size: 40px;text-decoration: #99FFFF wavy underline;" class="luckyrobux-text">
-                            clone web.COM</h3>
+                            <?= DEFAUL_URL_WEB ?></h3>
                     </span>
                 </div>
                 <div class="col-span-12 md:col-span-5 py-2 luckyrobux-text" style="text-align: center;font-size: 23px;"
